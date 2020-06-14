@@ -7,3 +7,12 @@ if (!function_exists('assets')) {
         return $link;
     }
 }
+if (!function_exists('cek_user')) {
+    function cek_user()
+    {
+        $CI = &get_instance();
+        if ($CI->session->userdata('status_login') != 'Oke') {
+            redirect('logout');
+        }
+    }
+}
