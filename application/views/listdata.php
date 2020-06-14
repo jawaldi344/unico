@@ -13,6 +13,15 @@
 
     <script src="<?= assets() ?>js/jquery-3.4.1.min.js"></script>
     <script src="<?= assets() ?>js/materialize.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#table_id').DataTable();
+        });
+    </script>
 </head>
 
 <body>
@@ -36,68 +45,43 @@
     </nav>
     <!-- End Navbar -->
 
-    <!-- Slide -->
-    <div class="carousel carousel-slider center">
-        <div class="carousel-item grey white-text" href="#one!">
-            <h2>First Slide</h2>
-        </div>
-        <div class="carousel-item grey white-text" href="#two!">
-            <h2>Second Slide</h2>
-        </div>
-        <div class="carousel-item grey white-text" href="#three!">
-            <h2>Thirt Slide</h2>
-        </div>
-    </div>
-    <hr>
-    <!-- End Slide -->
-
-    <!-- Form Search and Grid Menu  -->
     <div class="container">
-        <div class="search-form">
-            <span class="icon"><i class="material-icons">search</i></span>
-            <input type="search" id="search" placeholder="Search..." />
-        </div>
-        <div class="row center">
-            <div class="col s3 lighten-1">
-                <div class="grid-menu black-text">
-                    <img src="<?= assets() ?>image/giftcard.png">
-                    Material
-                </div>
-            </div>
-            <div class="col s3 lighten-1">
-                <div class="grid-menu black-text">
-                    <img src="<?= assets() ?>image/build.png">
-                    Tools
-                </div>
-            </div>
-            <div class="col s3 lighten-1">
-                <div class="grid-menu black-text">
-                    <img src="<?= assets() ?>image/data-setting.png">
-                    Fitting
-                </div>
-            </div>
-            <div class="col s3 lighten-1">
-                <div class="grid-menu black-text">
-                    <img src="<?= assets() ?>image/category.png">
-                    Others
-                </div>
-            </div>
+        <div class="row">
+            <table id="table_id" class="display">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Birthday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($data as $d) { ?>
+                        <tr>
+                            <td><?= $d['id_user'] ?></td>
+                            <td><?= $d['name'] ?></td>
+                            <td><?= $d['email'] ?></td>
+                            <td><?= $d['birthday'] ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
         </div>
     </div>
-    <!-- End Form Search and Grid Menu  -->
 
     <!-- Mobile Navbar -->
     <div class="mobile-nav">
         <div class="mobile-nav-item">
             <a href="<?= site_url('welcome') ?>">
-                <div class="mobile-nav-item-content mobile-nav-item-active">
+                <div class="mobile-nav-item-content black-text">
                     <i class="material-icons">home</i>
                 </div>
             </a>
         </div>
         <div class="mobile-nav-item">
             <a href="<?= site_url('user-list') ?>">
-                <div class="mobile-nav-item-content black-text">
+                <div class="mobile-nav-item-content mobile-nav-item-active">
                     <i class="material-icons">person</i>
                 </div>
             </a>
@@ -111,18 +95,6 @@
                 $('.sidenav').sidenav();
             });
         })(jQuery);
-        $(document).ready(function() {
-            $(".carousel.carousel-slider").carousel({
-                fullWidth: true,
-                indicators: true
-            });
-            autoplay();
-
-            function autoplay() {
-                $('.carousel.carousel-slider').carousel('next');
-                setTimeout(autoplay, 4500);
-            }
-        });
     </script>
 </body>
 

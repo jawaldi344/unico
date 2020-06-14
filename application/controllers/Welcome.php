@@ -15,4 +15,9 @@ class Welcome extends CI_Controller
 	{
 		$this->load->view('home');
 	}
+	public function listdata()
+	{
+		$d['data'] = $this->db->get('users')->result_array();
+		$this->load->view('listdata', $d);
+	}
 }
